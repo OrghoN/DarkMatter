@@ -15,7 +15,7 @@ config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 500 #task-dependent - set up to make just one output file
 config.Data.totalUnits  = 50000 #task-dependent
 config.Data.publication = True
-config.Data.outLFNDirBase = '/store/user/abdollah/CodexGP/'
+config.Data.outLFNDirBase = '/store/user/oneogi/CodexGP'
 
 # These strings are used to construct the output dataset name
 config.Data.outputDatasetTag  = 'wmLHE' #something you like
@@ -48,14 +48,16 @@ if __name__ == '__main__':
     ## From now on that's what users should modify: this is the a-la-CRAB2 configuration part. ##
     #############################################################################################
 
-    
-    Sample=['1200_500_550','1600_700_770','1800_800_880']
+
+    Sample=['1000_400_440']
     for sam in Sample:
-	    config.General.requestName   = 'DM_Codex_%s'%sam #task-dependent
-	    config.JobType.inputFiles = ['Codex_LQ%s_gen2_tarball.tar.xz'%sam]
-	    config.JobType.psetName    = 'wmLHE_DM_LQ_%s_cfg.py'%sam #this is the config file you created with cmsDriver
-	    config.Data.outputPrimaryDataset  = 'DM_Codex_%s'%sam #this is the dataset name that all tiers will have.  e.g. VBFHToBB_M-125_13TeV_powheg_pythia8
-	    submit(config)
+        config.General.requestName   = 'DM_Codex_%s_local_relG'%sam #task-dependent
+        samSp = sam.split('_')
+        config.JobType.inputFiles = ['Codex_LQ%s_DM_%s_X_%s_gen2_slc6_amd64_gcc481_CMSSW_7_1_30_tarball.tar.xz'%(samSp[0],samSp[1],samSp[2])] #Input Files
+        config.JobType.psetName    = 'wmLHE_DM_LQ_%s_cfg.py'%sam #this is the config file you created with cmsDriver
+        config.Data.outputPrimaryDataset  = 'DM_Codex_%s'%sam #this is the dataset name that all tiers will have.  e.g. VBFHToBB_M-125_13TeV_powheg_pythia8
+        print config
+        submit(config)
 
 '''
     config.General.requestName   = 'DM_Codex_1600_700_770' #task-dependent
