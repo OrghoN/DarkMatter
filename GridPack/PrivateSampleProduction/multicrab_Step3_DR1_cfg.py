@@ -10,6 +10,7 @@ config.section_("JobType")
 config.JobType.pluginName  = 'Analysis'
 config.JobType.psetName    = 'DIGI-RECO_1_cfg.py' #this is the config file you created with cmsDriver
 config.JobType.maxMemoryMB = 4000
+config.JobType.numCores = 4
 
 config.section_("Data")
 #config.Data.inputDataset = '/my_signal/abdollah-GEN-SIM-539ad005d03d5f717f49017dfdaee19f/USER'
@@ -54,9 +55,9 @@ if __name__ == '__main__':
 
 
     Sample=[
-['1000_400_440','/DM_Codex_1000_400_440/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
+['1400_600_660','/DM_Codex_1400_600_660/oneogi-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
 #['1200_500_550','/DM_Codex_1200_500_550/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
-['1400_600_660','/DM_Codex_1400_600_660/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
+#['1400_600_660','/DM_Codex_1400_600_660/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
 #['1600_700_770','/DM_Codex_1600_700_770/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
 #['1800_800_880','/DM_Codex_1800_800_880/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER'],
 #['2000_900_990','/DM_Codex_2000_900_990/abdollah-GEN-SIM-8ecf21deb7c86694de43d2ad8e8e2292/USER']
@@ -65,6 +66,7 @@ if __name__ == '__main__':
     for sam in Sample:
             config.General.requestName   = 'DM_Codex_%s'%sam[0] #task-dependent
             config.Data.inputDataset = sam[1]
+            print config
             submit(config)
 
 
