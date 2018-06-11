@@ -1,4 +1,5 @@
 import sys
+import pprint
 
 if len(sys.argv)<2:
     print("Need filename as first Input")
@@ -10,4 +11,4 @@ else:
         lineList = line.split("/")[1].split("_")
         massPoints = "_".join([lineList[2],lineList[3], lineList[4]])
         List.append([massPoints,line])
-    print(List)
+    pprint.pprint(List)

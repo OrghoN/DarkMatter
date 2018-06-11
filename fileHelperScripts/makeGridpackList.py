@@ -1,3 +1,4 @@
+import pprint
 import sys
 
 if len(sys.argv)<2:
@@ -11,4 +12,4 @@ else:
         massPoints = "_".join([lineList[1][2:],lineList[3], lineList[5]])
         List.append(massPoints)
 
-    print(List)
+    pprint.pprint(List)
