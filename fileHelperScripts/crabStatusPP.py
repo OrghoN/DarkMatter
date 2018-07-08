@@ -50,8 +50,8 @@ else:
     log = open(sys.argv[1], 'r')
     tableKeys = ["idle", "failed", "running", "finished", "transferring" , "done", "unsubmitted"]
 
-    print((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format("#","Mass Point",tableKeys[0],tableKeys[1],tableKeys[2],tableKeys[3],tableKeys[4],tableKeys[5],tableKeys[6],"graphical"))
-    print((4*u"\u2550"+u"\u256A")+(8*(16*u"\u2550"+u"\u256A"))+(50*u"\u2550"))
+    print((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format("#","Mass Point",tableKeys[0],tableKeys[1],tableKeys[2],tableKeys[3],tableKeys[4],tableKeys[5],tableKeys[6],"graphical")).encode('utf-8')
+    print((4*u"\u2550"+u"\u256A")+(8*(16*u"\u2550"+u"\u256A"))+(50*u"\u2550")).encode('utf-8')
 
     statusPattern = r'(\d+).(\d+)% \( *(\d+).(\d+)\)'
 
@@ -61,7 +61,7 @@ else:
         line=line.rstrip()
         if line.find("CRAB project directory:") != -1:
             if massNumber != 0:
-                print ((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format(massNumber,codex,tableValues[0],tableValues[1],tableValues[2],tableValues[3],tableValues[4],tableValues[5],tableValues[6],buildGraph(tableValues[0:5])))
+                print ((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format(massNumber,codex,tableValues[0],tableValues[1],tableValues[2],tableValues[3],tableValues[4],tableValues[5],tableValues[6],buildGraph(tableValues[0:5]))).encode('utf-8')
             codex = re.search(r'crab_DM_Codex_(\d+)_(\d+)_(\d+)',line).group()[14:]
             massNumber += 1
             tableValues = ["","","","","","",""]
@@ -70,4 +70,4 @@ else:
             if line.find(key) != -1:
                 if re.search(statusPattern,line) is not None:
                     tableValues[index] = re.search(statusPattern,line).group()
-    print ((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format(massNumber,codex,tableValues[0],tableValues[1],tableValues[2],tableValues[3],tableValues[4],tableValues[5],tableValues[6],buildGraph(tableValues[0:5])))
+    print ((u"{:^4}\u2502"+8*u"{:^16}\u2502"+u"{:^50}").format(massNumber,codex,tableValues[0],tableValues[1],tableValues[2],tableValues[3],tableValues[4],tableValues[5],tableValues[6],buildGraph(tableValues[0:5]))).encode('utf-8')
